@@ -10,10 +10,13 @@ public func configure(_ config: inout Config, _ env: inout Environment, _ servic
     let router = EngineRouter.default()
     try routes(router)
     services.register(router, as: Router.self)
+    
+    let myService = NIOServerConfig.default(port: 8090)
+    services.register(myService)
 
     /// Register middleware
     var middlewares = MiddlewareConfig() // Create _empty_ middleware config
-    /// middlewares.use(FileMiddleware.self) // Serves files from `Public/` directory
+    middlewares.use(FileMiddleware.self) // Serves files from `Public/` directory
     middlewares.use(ErrorMiddleware.self) // Catches errors and converts to HTTP response
     services.register(middlewares)
 
@@ -27,7 +30,11 @@ public func configure(_ config: inout Config, _ env: inout Environment, _ servic
 
     /// Configure migrations
     var migrations = MigrationConfig()
-    migrations.add(model: Todo.self, database: .sqlite)
+    migrations.add(model: Categories.self, database: .sqlite)
+    migrations.add(model: MenuItem.self, database: .sqlite)
+    migrations.add(model: PreparationTime.self, database: .sqlite)
+    
+    migrations.add(migration: DataLoader.self, database: .sqlite)
     services.register(migrations)
 
 }
