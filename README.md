@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="http://www.inspireidaho.com/wp-content/uploads/2018/01/InspireIdaho-Home-1280.png" style="background-color:#000000"  alt="Inspire Home">
+    <img src="https://user-images.githubusercontent.com/9576678/44291547-e0011800-a233-11e8-89ff-c3eae0a06804.png" alt="Inspire Home">
     <br>
     <br>
     <a href="http://docs.vapor.codes/3.0/">
